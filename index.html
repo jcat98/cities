@@ -16,27 +16,28 @@
     </body>
     
     <script>
-    document.getElementById("cityField").addEventListener("keyup", function(event) {
-        event.preventDefault();
-        const url = "https://csonline.byu.edu/city?q=" + document.getElementById("cityField").value;
-        fetch(url)
-            .then(function(response) {
-                return response.json();
-            }).then(function(json) {
-                console.log(json);
-                console.log(json[0]);
-                console.log("Got " + json[0].city);
-                const everything = document.createElement("ul");
-                for (let i = 0; i < json.length; i++) {
-                    const value = json[i].city;
-                    const listItem = document.createElement("li");
-                    listItem.appendChild(document.createTextNode(value));
-                    everything.appendChild(listItem);
-                };
-                const city = document.getElementById("displayCity");
-                city.textContent = "";
-                city.appendChild(everything);
-            });
-    });
-    </script>
+        document.getElementById("cityField").addEventListener("keyup", function(event) {
+            event.preventDefault();
+            const url = "https://csonline.byu.edu/city?q=" +
+                        document.getElementById("cityField").value;
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                }).then(function(json) {
+                    console.log(json);
+                    console.log(json[0]);
+                    console.log("Got " + json[0].city);
+                    const everything = document.createElement("ul");
+                    for (let i = 0; i < json.length; i++) {
+                        const value = json[i].city;
+                        const listItem = document.createElement("li");
+                        listItem.appendChild(document.createTextNode(value));
+                        everything.appendChild(listItem);
+                    };
+                    const txtHint = document.getElementById("txtHint");
+                    txtHint.textContent = "";
+                    txtHint.appendChild(everything);
+                });
+        });
+        </script>
 </html>
